@@ -1,0 +1,15 @@
+language: java
+jdk:
+- oraclejdk8
+services:
+- postgresql
+before_install:
+- psql -c "drop database if exists bookingbus" -U postgres
+- psql -c "create database bookingbus" -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: aGqIB/Vm/F7KPWp3j+DAn6wqfcyfNcxqZqfyGDVW8pWjqT5UsmEuG6E2U1rk3PWHNqq7I4GHcIfvh2NSGgc0IYpWeSQPX5Y3EdeeBbHI9iqWGCxzKmRPz1tEvTWeZMWKIiKMNHSW1wiqf1KBgokprqLZoYLlTLwg5yNh6NvYL+y9yW0+gFuVOn94E3NHlvZKtZFi/kNiuEat7lbuWBOwg6FcVu3OLVeWMzl9CbcDajQDzuGu4h8Pfdt5TKcspM/l3p0xGGqE9JxWP2/iFv1ZxFPmLJ7f0RBvdgmb+/HmVb6ZURozCS/NYvlD5LaO5WaSdGx5xnG5qCghr4MnUZiMyFm9eIdbct2CQf+do9aDRLUBg44GUHpZYMUpfr1z8A3Hycw/F2O8FeJlMR6/Jt/okHOevp8HUfqOZi9iHPEpyLyTcPtwkn6l9c1L4LvdnMLUk2OX3IgH98kNZTeQedbPp4GNuejJaRepK8ZQy1z9whd+jVqtBJGN6UbVUhSsFKjY7W0i0RNsXS8b8YWZc3tILIaSe+TH31+PnpX22EOvTb+xQa20f6AAwzxldyP0Y/mz+/opEGoAy0DzcSh9NMaGoRlhBjKmQlDd7kwqmYhOPYUdX20PaVVQcI1/jBwYHrirYBtIqG6tyITGlsoLqNxQhHesNyFw0dzIg6fVBcZdZGk=
+  app: transmedan-booking
+  on:
+    repo: fv-david/TransMedanBooking
