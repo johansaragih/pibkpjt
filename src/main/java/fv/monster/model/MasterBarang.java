@@ -17,9 +17,9 @@ import lombok.Data;
  *
  * @author Johan Saragih
  */
-@Entity(name="MasterBarang")
-@Data
-@Table(name = "MASTERBARANG")
+//@Entity(name="MasterBarang")
+//@Data
+//@Table(name = "MASTERBARANG")
 public class MasterBarang implements Serializable {
     private static final long serialVersionUID = 1L;
     

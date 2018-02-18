@@ -15,9 +15,9 @@ import lombok.Data;
  *
  * @author Johan Saragih
  */
-@Entity(name="DetailBarang")
-@Data
-@Table(name = "DETAILBARANG")
+//@Entity(name="DetailBarang")
+//@Data
+//@Table(name = "DETAILBARANG")
 public class DetailBarang {
     private static final long serialVersionUID = 1L;
     @ManyToOne(fetch = FetchType.LAZY)

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author Johan Saragih
  */
-@Repository
-public interface MasterBarangRepository extends JpaRepository<MasterBarang, Long> {
-    
-}
+//@Repository
+//public interface MasterBarangRepository extends JpaRepository<MasterBarang, Long> {
+//    
+//}
