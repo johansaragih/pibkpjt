@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Johan Saragih
  */
 public interface DataRepository extends JpaRepository<HeaderData, Long>{
-    HeaderData findOneByNomorBarang(String NO_BARANG);
+    HeaderData findOneByNOBARANG(String nOBARANG);
 }

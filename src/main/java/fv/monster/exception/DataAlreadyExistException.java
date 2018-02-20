@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author Johan Saragih
  */
 @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "data_already_exists")
-public class DataAlreadyExistException {
+public class DataAlreadyExistException extends RuntimeException{
     
 }

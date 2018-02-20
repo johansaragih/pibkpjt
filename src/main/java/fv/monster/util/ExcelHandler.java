@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
@@ -24,6 +23,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -35,7 +36,7 @@ public class ExcelHandler {
     private static DetailBarang detailBarang;
     private static Workbook workbook;
     public static boolean isCN = true;
-    
+    private static final Logger logger = LoggerFactory.getLogger(ExcelHandler.class);
     
     public static List<HeaderDataDto> process(String filePath) {
         try {
@@ -46,9 +47,9 @@ public class ExcelHandler {
             
             return lstHeaderData;
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(ExcelHandler.class.getName()).log(Level.SEVERE, null, ex);
+            logger.debug(ex.getMessage());
         } catch (IOException ex) {
-            Logger.getLogger(ExcelHandler.class.getName()).log(Level.SEVERE, null, ex);
+            logger.debug(ex.getMessage());
         }
         return new ArrayList<>();
     }
@@ -90,11 +91,11 @@ public class ExcelHandler {
         rowIterator.next();
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
-            System.out.print(row.getRowNum());
+            logger.debug(String.valueOf(row.getRowNum()));
             //add header data
 
             HeaderDataDto hData = new HeaderDataDto();
-            System.out.println(getCellValue(row.getCell(0)));
+            logger.debug(getCellValue(row.getCell(0)).toString());
             hData.setJNS_AJU((int) getCellValue(row.getCell(0)));
             if ((int) getCellValue(row.getCell(0)) != 1) {
                 isCN = false;
@@ -210,7 +211,7 @@ public class ExcelHandler {
             DataFormatter dfr = new DataFormatter();
 
             if (String.valueOf(dfr.formatCellValue(row.getCell(49))).equals("0")) {
-                System.out.println(String.valueOf(getCellValue(row.getCell(49))));
+                logger.debug(String.valueOf(getCellValue(row.getCell(49))));
                 DateFormat df = new SimpleDateFormat("HHmmss");
                 String jamTiba = df.format(new Date().toString());
                 hData.setJAM_TIBA(jamTiba);
@@ -235,7 +236,7 @@ public class ExcelHandler {
 //            if (String.valueOf(getCellValue(row.getCell(53))).equals("0")) {
 //                hData.setVOLUME(0);
 //            }else{
-//                System.out.println(getCellValue(row.getCell(53)));
+//                logger.debugln(getCellValue(row.getCell(53)));
 //                hData.setVOLUME(setBDNilai(row.getCell(53), objFormulaEvaluator));
 //            }
             hData.setVOLUME(setBDNilai(row.getCell(53), objFormulaEvaluator));
@@ -254,7 +255,7 @@ public class ExcelHandler {
             } else {
                 hData.setMARKING(String.valueOf(getCellValue(row.getCell(57))));
             }
-            hData.setDetails(createListDetail(hSheet, objFormulaEvaluator));
+            hData.setDetails(createListDetail(workbook.getSheetAt(1), objFormulaEvaluator));
             listData.add(hData);
         }
 
@@ -280,10 +281,11 @@ public class ExcelHandler {
 
             dData.setUR_BRG(String.valueOf(getCellValue(row.getCell(3))));
             dData.setKD_NEG_ASAL(String.valueOf(getCellValue(row.getCell(4))));
+            String JML_KMS = getCellValue(row.getCell(5)).toString();
             if (String.valueOf(getCellValue(row.getCell(5))).equals("0")) {
                 dData.setJML_KMS(0);
             } else {
-                dData.setJML_KMS((int) getCellValue(row.getCell(5)));
+                dData.setJML_KMS(Integer.valueOf(getCellValue(row.getCell(5)).toString()));
             }
 
             if (String.valueOf(getCellValue(row.getCell(6))).equals("0")) {
@@ -291,7 +293,7 @@ public class ExcelHandler {
             } else {
                 dData.setJNS_KMS(String.valueOf(getCellValue(row.getCell(6))));
             }
-//            System.out.println(dData.getNO_HOUSE_BLAWB() + " HS "+ dData.getHS_CODE());
+//            logger.debugln(dData.getNO_HOUSE_BLAWB() + " HS "+ dData.getHS_CODE());
 //            dData.setCIF(BigDecimal.valueOf(row.getCell(7).getNumericCellValue()));
             dData.setCIF(setBDNilai(row.getCell(7), objFormulaEvaluator));
 
@@ -323,12 +325,12 @@ public class ExcelHandler {
                 dData.setJML_SAT((int) getCellValue(row.getCell(16)));
             }
 
-            System.out.println(dData.getNO_HOUSE_BLAWB());
+            logger.debug(dData.getNO_HOUSE_BLAWB());
             dData.setBM_TRF(setBDNilai(row.getCell(17), objFormulaEvaluator));
             dData.setPPH_TRF(setBDNilai(row.getCell(18), objFormulaEvaluator));
             dData.setPPN_TRF(setBDNilai(row.getCell(19), objFormulaEvaluator));
             dData.setPPNBM_TRF(setBDNilai(row.getCell(20), objFormulaEvaluator));
-//            System.out.println("CIF="+dData.getCIF());
+//            logger.debugln("CIF="+dData.getCIF());
 
             dData.setBM(BigDecimal.valueOf(row.getCell(7).getNumericCellValue()).multiply(BigDecimal.valueOf(row.getCell(17).getNumericCellValue())).divide(new BigDecimal(100)));
             dData.setPPH(BigDecimal.valueOf(row.getCell(7).getNumericCellValue()).multiply(BigDecimal.valueOf(row.getCell(18).getNumericCellValue())).divide(new BigDecimal(100)));

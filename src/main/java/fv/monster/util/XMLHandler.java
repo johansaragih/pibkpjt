@@ -105,7 +105,7 @@ public class XMLHandler {
         XMLHandler.makeFile(pathToSave+".xml");
     }
     
-    public static void createMainXML(List<HeaderDataDto> listDataH, List<DetailDataDto> listDataD, String pathToSave, boolean includeManifest){
+    public static void createMainXML(List<HeaderDataDto> listDataH, String pathToSave, boolean includeManifest){
         XMLHandler.makeDoc();
         Element order = XMLHandler.addRoot("CN_PIBK");
         for (HeaderDataDto header : listDataH) {
@@ -182,7 +182,7 @@ public class XMLHandler {
             
             Element details = XMLHandler.addElement("DETIL", info);
 //                XMLHandler.addNode(info, "Value", "99999");
-            for (DetailDataDto detail : listDataD) {
+            for (DetailDataDto detail : header.getDetails()) {
                 if (header.getNO_HOUSE_BLAWB().equals(detail.getNO_HOUSE_BLAWB())) {
                     Element det = XMLHandler.addElement("BARANG", details);
                     XMLHandler.addNode(det, "SERI_BRG", String.valueOf(detail.getSERI_BRG()));

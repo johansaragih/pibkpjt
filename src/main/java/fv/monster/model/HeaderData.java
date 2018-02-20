@@ -35,7 +35,7 @@ public class HeaderData {
     @Column(name = "KD_JNS_PIBK")
     int KD_JNS_PIBK;
     @Column(name = "NO_BARANG")
-    String NO_BARANG;
+    String nOBARANG;
     @Column(name = "KD_KANTOR")
     String KD_KANTOR;
     @Column(name = "KD_JNS_ANGKUT")

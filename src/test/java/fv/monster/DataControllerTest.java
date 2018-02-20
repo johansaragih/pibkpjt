@@ -42,15 +42,15 @@ public class DataControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     
-//    @Test
-//    public void getData_ThenOK_isCorrect() throws Exception {
-//        MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
-//
-//        mockMvc.perform(MockMvcRequestBuilders.get("/api/data"))
-//            .andExpect(MockMvcResultMatchers.status().isOk());
+    @Test
+    public void getData_ThenOK_isCorrect() throws Exception {
+        MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/data"))
+            .andExpect(MockMvcResultMatchers.status().isOk());
 //            .andExpect(MockMvcResultMatchers.content().contentType(contentType));
 //            .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
-//    }
+    }
     
     @Test
     public void uploadData_ThenOK_isCorrect() throws Exception {
@@ -60,4 +60,23 @@ public class DataControllerTest {
                 .file(new MockMultipartFile("file", file.getName(), "application/vnd.ms-excel", fileInputStream)))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
+    
+//    @Test
+//    public void uploadData_ThenNomorBarangIsExist_isNotCorrect() throws Exception {
+//        File file = new File("C:\\Users\\Johan Saragih\\Downloads\\Data Contoh 1.xlsx");
+//        FileInputStream fileInputStream = new FileInputStream(file);
+//        mockMvc.perform(MockMvcRequestBuilders.fileUpload("/api/upload")
+//                .file(new MockMultipartFile("file", file.getName(), "application/vnd.ms-excel", fileInputStream)))
+//                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+//    }
+
+//    @Test
+//    public void uploadData_ThenNomorBarangIsExist_isNotCorrect() throws Exception {
+//        File file = new File("C:\\Users\\Johan Saragih\\Downloads\\Data Contoh 1.xlsx");
+//        FileInputStream fileInputStream = new FileInputStream(file);
+//        mockMvc.perform(MockMvcRequestBuilders.fileUpload("/api/upload")
+//                .file(new MockMultipartFile("file", file.getName(), "application/vnd.ms-excel", fileInputStream)))
+//                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+//    }
+    
 }

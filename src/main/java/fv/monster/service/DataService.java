@@ -6,6 +6,7 @@
 package fv.monster.service;
 
 import fv.monster.dto.HeaderDataDto;
+import fv.monster.model.HeaderData;
 import java.util.List;
 
 /**
@@ -13,13 +14,13 @@ import java.util.List;
  * @author Johan Saragih
  */
 public interface DataService {
-    HeaderDataDto addData(HeaderDataDto headerDataDto);
+    HeaderData addData(HeaderDataDto headerDataDto);
 
-    HeaderDataDto getDataById(Long id);
+    HeaderData getDataById(Long id);
 
-    List<HeaderDataDto> getAllData();
+    List<HeaderData> getAllData();
 
-    void updateUser(HeaderDataDto headerDataDto);
+//    void updateUser(HeaderDataDto headerDataDto);
 
-    void deleteUser(Long id);
+//    void deleteUser(Long id);
 }
