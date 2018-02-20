@@ -21,14 +21,14 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String username;
 
     @Column(nullable = false)
     private String password;
-    private String firstname;
-    private String lastname;
-    private String phoneNumber;
-
+    private String companyName;
+    private String token;
+    private String npwp;
+    
     @ManyToMany
     private List<Role> roles;
     private boolean isActivated;

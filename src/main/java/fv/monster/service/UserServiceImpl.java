@@ -32,18 +32,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(UserDto userDto) {
-        User foundUser = userRepository.findOneByEmail(userDto.getEmail());
+        User foundUser = userRepository.findOneByUsername(userDto.getUsername());
         if (foundUser != null) {
             throw new UserAlreadyExistsException();
         }
 
         User user = new User();
 
-        user.setEmail(userDto.getEmail());
+        user.setUsername(userDto.getUsername());
         user.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
-        user.setFirstname(userDto.getFirstname());
-        user.setLastname(userDto.getLastname());
-        user.setPhoneNumber(userDto.getPhoneNumber());
+        user.setCompanyName(userDto.getCompanyName());
+        user.setNpwp(userDto.getNpwp());
+        user.setToken(userDto.getToken());
         user.setActivated(true);
         user.setActivationHash(UUID.randomUUID().toString());
 
@@ -60,8 +60,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userRepository.findOneByEmail(email);
+    public User getUserByUsername(String username) {
+        return userRepository.findOneByUsername(username);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User foundUser = userRepository.findOneByEmail(username);
+        User foundUser = userRepository.findOneByUsername(username);
         if (foundUser == null) {
             throw new UsernameNotFoundException("USER_NOT_FOUND");
         }
