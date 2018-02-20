@@ -64,8 +64,8 @@ public class XMLHandler {
             DocumentBuilder docB = dF.newDocumentBuilder();       
             doc = docB.newDocument();
         } catch (ParserConfigurationException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(null, ex.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
+//            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -80,10 +80,10 @@ public class XMLHandler {
             t.transform(source, r);
         } catch (TransformerConfigurationException ex) {
 //            JOptionPane.showMessageDialog(null, ex.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerException ex) {
 //            JOptionPane.showMessageDialog(null, ex.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -291,7 +291,7 @@ public class XMLHandler {
         if (includeManifest) {
             XMLHandler.makeFile(pathToSave+"/DataPreno.xml");
         }else{
-            XMLHandler.makeFile(pathToSave+".xml");
+            XMLHandler.makeFile(pathToSave);
         }
     }
 }
