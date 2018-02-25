@@ -32,25 +32,25 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest(classes = FvBusBookingApplication.class)
 @WebAppConfiguration
 public class DataControllerTest {
-//    @Autowired
-//    private WebApplicationContext webApplicationContext;
-//    
-//    private MockMvc mockMvc;
-//    
-//    @Before
-//    public void setupMockMvc() {
-//        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-//    }
+    @Autowired
+    private WebApplicationContext webApplicationContext;
     
-//    @Test
-//    public void getData_ThenOK_isCorrect() throws Exception {
-//        MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
-//
-//        mockMvc.perform(MockMvcRequestBuilders.get("/api/data"))
-//            .andExpect(MockMvcResultMatchers.status().isOk());
-////            .andExpect(MockMvcResultMatchers.content().contentType(contentType));
-////            .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
-//    }
+    private MockMvc mockMvc;
+    
+    @Before
+    public void setupMockMvc() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
+    
+    @Test
+    public void getData_ThenOK_isCorrect() throws Exception {
+        MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/data"))
+            .andExpect(MockMvcResultMatchers.status().isOk());
+//            .andExpect(MockMvcResultMatchers.content().contentType(contentType));
+//            .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
+    }
 //    
 //    @Test
 //    public void uploadData_ThenOK_isCorrect() throws Exception {
