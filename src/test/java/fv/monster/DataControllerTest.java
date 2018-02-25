@@ -32,15 +32,15 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest(classes = FvBusBookingApplication.class)
 @WebAppConfiguration
 public class DataControllerTest {
-    @Autowired
-    private WebApplicationContext webApplicationContext;
-    
-    private MockMvc mockMvc;
-    
-    @Before
-    public void setupMockMvc() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
+//    @Autowired
+//    private WebApplicationContext webApplicationContext;
+//    
+//    private MockMvc mockMvc;
+//    
+//    @Before
+//    public void setupMockMvc() {
+//        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+//    }
     
 //    @Test
 //    public void getData_ThenOK_isCorrect() throws Exception {

@@ -32,14 +32,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(UserDto userDto) {
-        User foundUser = userRepository.findOneByUsername(userDto.getUsername());
+        User foundUser = userRepository.findOneByEmail(userDto.getEmail());
         if (foundUser != null) {
             throw new UserAlreadyExistsException();
         }
 
         User user = new User();
 
-        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
         user.setCompanyName(userDto.getCompanyName());
         user.setNpwp(userDto.getNpwp());
@@ -60,8 +60,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        return userRepository.findOneByUsername(username);
+    public User getUserByEmail(String email) {
+        return userRepository.findOneByEmail(email);
     }
 
     @Override
@@ -80,8 +80,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User foundUser = userRepository.findOneByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User foundUser = userRepository.findOneByEmail(email);
         if (foundUser == null) {
             throw new UsernameNotFoundException("USER_NOT_FOUND");
         }
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
-        return new org.springframework.security.core.userdetails.User(username, foundUser.getPassword(), true, true,
+        return new org.springframework.security.core.userdetails.User(email, foundUser.getPassword(), true, true,
                 true, foundUser.isActivated(), grantedAuthorities);
     }
 

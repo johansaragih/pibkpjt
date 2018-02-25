@@ -15,8 +15,8 @@ import javax.validation.constraints.Size;
 public class UserDto {
 
     @NotEmpty
-//    @Email
-    private String username;
+    @Email
+    private String email;
     @Size(min = 5, max = 50)
     private String password;
     @NotEmpty
@@ -38,14 +38,14 @@ public class UserDto {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
+    
     public String getCompanyName() {
         return companyName;
     }

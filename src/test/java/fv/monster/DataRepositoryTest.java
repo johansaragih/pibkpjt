@@ -19,11 +19,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FvBusBookingApplication.class)
 public class DataRepositoryTest {
-    @Autowired
-    private DataRepository dataRepository;
-
-    @Test
-    public void givenGenericEntityRepository_whenSaveAndRetreiveEntity_thenOK() {
-    
-    }
+//    @Autowired
+//    private DataRepository dataRepository;
+//
+//    @Test
+//    public void givenGenericEntityRepository_whenSaveAndRetreiveEntity_thenOK() {
+//    
+//    }
 }
